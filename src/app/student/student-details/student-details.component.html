@@ -1,0 +1,60 @@
+<h2 mat-dialog-title>Student Details</h2>
+<form [formGroup]="registerForm">
+  <mat-dialog-content class="mat-typography">
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>First name</mat-label>
+        <input matInput [(ngModel)]="firstName" maxlength="10" placeholder="David" formControlName="firstNameControl">
+        <mat-error
+          *ngIf="registerForm.controls['firstNameControl'].invalid">{{getErrorMessage(errorType.firstName)}}</mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Last name</mat-label>
+        <input matInput [(ngModel)]="lastName" maxlength="10" placeholder="John" formControlName="lastNameControl">
+        <mat-error
+          *ngIf="registerForm.controls['lastNameControl'].invalid">{{getErrorMessage(errorType.lastName)}}</mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Age</mat-label>
+        <input type="number" matInput [(ngModel)]="age" maxlength="3" placeholder="18"
+               formControlName="ageControl">
+        <mat-error *ngIf="registerForm.controls['ageControl'].invalid">{{getErrorMessage(errorType.age)}}</mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="dateOfBirth" formControlName="dateOfBirthControl">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker color="primary"></mat-datepicker>
+        <mat-error
+          *ngIf="registerForm.controls['dateOfBirthControl'].invalid">{{getErrorMessage(errorType.dateOfBirth)}}</mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Contact number</mat-label>
+        <input type="number" matInput [(ngModel)]="contactNumber" maxlength="11"
+               placeholder="+9567688334" formControlName="contactNumberControl">
+        <mat-error
+          *ngIf="registerForm.controls['contactNumberControl'].invalid">{{getErrorMessage(errorType.contactNumber)}}</mat-error>
+      </mat-form-field>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="{action:false}">Cancel</button>
+    <button mat-button [mat-dialog-close]="{action:true,data:getStudentRequestBody()}" cdkFocusInitial
+            [disabled]="registerForm.invalid">
+      Save
+    </button>
+  </mat-dialog-actions>
+</form>
