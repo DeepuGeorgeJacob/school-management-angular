@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Student Performance</h2>
+<form [formGroup]="registerForm">
+  <mat-dialog-content class="mat-typography">
+
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Best Performance</mat-label>
+        <input type="number" matInput [(ngModel)]="bestPerformance" maxlength="3" placeholder="18"
+               formControlName="bestPerformanceControlControl">
+        <mat-error *ngIf="registerForm.controls['bestPerformanceControlControl'].invalid">Enter Best Performance</mat-error>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="legacy">
+        <mat-label>Last Performace</mat-label>
+        <input type="number" matInput [(ngModel)]="lastPerformance" maxlength="3" placeholder="18"
+               formControlName="lastPerformanceControlControl">
+        <mat-error *ngIf="registerForm.controls['lastPerformanceControlControl'].invalid">Enter last performance</mat-error>
+      </mat-form-field>
+    </p>
+
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="{action:false}">Cancel</button>
+    <button mat-button [mat-dialog-close]="{action:true, data:saveData()}" cdkFocusInitial
+            [disabled]="registerForm.invalid">
+      Save
+    </button>
+  </mat-dialog-actions>
+</form>
+

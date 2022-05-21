@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {StudentService} from "../services/student.service";
 import {MatTableDataSource} from "@angular/material/table";
-import {Student} from "../model/model";
+import {Student} from "../model/student-list";
+import {StudentDetailsRequest, StudentRequest} from "../model/request";
 
 
 @Component({
@@ -11,7 +12,6 @@ import {Student} from "../model/model";
 })
 export class StudentListComponent implements OnInit {
 
-  @Output() totalStudents = new EventEmitter<number>();
   displayedColumns = ["ID", "First Name", "Last Name", "Action"]
   dataSource!: MatTableDataSource<Student>;
 
@@ -19,12 +19,9 @@ export class StudentListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.studentService.studentList.subscribe((data=>{
+    this.studentService.studentList$.subscribe((data => {
       let result = data.data
-      this.totalStudents.emit(result.length)
       this.dataSource = new MatTableDataSource(result)
     }));
   }
-
-
 }

@@ -1,0 +1,9 @@
+<div >
+  <mat-card> <span [matBadge]="studentCount" matBadgeSize="small" matBadgeOverlap="false">Students</span> </mat-card>
+  <div class="add-button-container">
+    <button mat-fab color="primary" aria-label="Add record" (click)="onAddRecord()" class="add-button" >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <student-list></student-list>
+</div>

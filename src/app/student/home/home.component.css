@@ -1,0 +1,14 @@
+
+
+.add-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+  background: red;
+}
+.add-button{
+  right: 20px;
+  bottom: 10px;
+  left: auto;
+  position: absolute;
+}

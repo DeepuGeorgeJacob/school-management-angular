@@ -1,3 +1,14 @@
-.title-spacer {
-  flex: 1 1 auto;
+.example-container {
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.student-sidenav-content {
+  height: 100%;
+  width: 100%;
+}
+
+.example-sidenav {
+  padding: 20px;
 }

@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {Student} from "../model/model";
+import {Student} from "../model/student-list";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {StudentDetailsRequest, StudentRequest} from "../model/request";
 
@@ -33,7 +33,6 @@ export class StudentDetailsComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: Student) {
     this.setUpData(data)
   }
-
 
   ngOnInit(): void {
   }

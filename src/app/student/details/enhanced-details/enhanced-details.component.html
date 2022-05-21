@@ -1,0 +1,63 @@
+<mat-progress-bar mode="query" *ngIf="isLoading"></mat-progress-bar>
+
+<div *ngIf="selectedStudent!=undefined">
+  <mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Basing information about {{selectedStudent.firstName}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>His full name is {{selectedStudent.firstName}} {{selectedStudent.lastName}}</p>
+      <div class="example-button-row">
+        <button mat-button>Update</button>
+      </div>
+
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Detailed information about {{selectedStudent.firstName}}
+        </mat-panel-title>
+        <mat-panel-description>
+          Contact information is available
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list role="list">
+        <mat-list-item role="listitem">Age : {{selectedStudent.studentDetails.age}}</mat-list-item>
+        <mat-list-item role="listitem">Contact Number : {{selectedStudent.studentDetails.contactNumber}}</mat-list-item>
+        <mat-list-item role="listitem">Date of Birth : {{selectedStudent.studentDetails.dateOfBirth}}</mat-list-item>
+      </mat-list>
+      <div class="example-button-row">
+        <button mat-button (click)="updateDetailsClicked()">Update</button>
+      </div>
+    </mat-expansion-panel>
+
+    <!--Performance-->
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Performance details about {{selectedStudent.firstName}}
+        </mat-panel-title>
+        <mat-panel-description>
+          verify and update the performance details
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list role="list" *ngIf="selectedStudent.performance!==undefined">
+        <mat-list-item role="listitem">Best performance : {{selectedStudent.performance.bestPerformance}}
+        </mat-list-item>
+        <mat-list-item role="listitem">Last Performance : {{selectedStudent.performance.lastPerformance}}
+        </mat-list-item>
+      </mat-list>
+      <div class="example-button-row">
+        <button mat-button (click)="saveOrUpdatePerformanceData()">{{getPerformanceButtonText()}}</button>
+      </div>
+
+    </mat-expansion-panel>
+
+
+  </mat-accordion>
+
+
+</div>

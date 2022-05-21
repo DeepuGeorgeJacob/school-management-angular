@@ -1,10 +1,7 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {StudentDetailsComponent} from "./student/student-details/student-details.component";
-import {auto} from "@popperjs/core";
-import {Student} from "./student/model/model";
-import {MatDialog} from "@angular/material/dialog";
+import {Component, OnInit} from '@angular/core';
 import {StudentService} from "./student/services/student.service";
-import {StudentRequest} from "./student/model/request";
+import {ThemePalette} from "@angular/material/core";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -12,30 +9,18 @@ import {StudentRequest} from "./student/model/request";
   styleUrls: ['./app.component.css'],
   providers: [StudentService]
 })
-export class AppComponent {
-  title = 'school-management';
-  toolBarTitle = "Students"
+export class AppComponent implements OnInit{
 
-  constructor(public dialog: MatDialog, public service: StudentService) {
+  background: ThemePalette = undefined;
+  routerLink = ['student-list','Unknown']
+  activeLink = this.routerLink[0]
+
+  constructor(private route:ActivatedRoute) {
   }
-
-  onAddRecord() {
-    const dialogRef = this.dialog.open(StudentDetailsComponent, {data: null, width: auto})
-    dialogRef.afterClosed().subscribe(result => {
-      const result1 = result as { action: boolean, data: StudentRequest };
-      if (result1.action) {
-        this.service.postStudentData(result1.data).subscribe(res => {
-            this.service.updateStudentList()
-        })
-      }
-
-      console.log(`Dialog result: ${result1}`);
-    });
+  ngOnInit() {
+    this.route.queryParams.subscribe(params=>{
+      console.log("ROUTES NAME "+params['name'])
+    })
   }
-
-  updateTitle(totalCount: number) {
-    this.toolBarTitle = 'Students : ' + totalCount
-  }
-
 
 }

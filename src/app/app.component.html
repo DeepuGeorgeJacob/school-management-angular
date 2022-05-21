@@ -1,13 +1,17 @@
-<div >
+<div>
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span>{{toolBarTitle}}</span>
+      <span> School Management</span>
       <span class="title-spacer"></span>
-      <button mat-icon-button class="add-icon" aria-label="Add record" (click)="onAddRecord()">
-        <mat-icon>add</mat-icon>
-      </button>
     </mat-toolbar-row>
   </mat-toolbar>
-  <student-list (totalStudents)="updateTitle($event)" ></student-list>
-</div>
 
+  <nav mat-tab-nav-bar [backgroundColor]="background" [tabPanel]="tabPanel">
+    <a mat-tab-link *ngFor="let link of routerLink"
+       (click)="activeLink = link"
+       [routerLink]="link"
+       [active]="activeLink == link"> {{link}} </a>
+  </nav>
+  <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel>
+  <router-outlet></router-outlet>
+</div>
