@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StudentService} from "./student/services/student.service";
 import {ThemePalette} from "@angular/material/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -12,15 +12,22 @@ import {ActivatedRoute} from "@angular/router";
 export class AppComponent implements OnInit{
 
   background: ThemePalette = undefined;
-  routerLink = ['student-list','Unknown']
+  routerLink = ['student-list','courses']
   activeLink = this.routerLink[0]
 
-  constructor(private route:ActivatedRoute) {
+  constructor(private router:Router) {
+    router.events.subscribe((val) => {
+      if(val instanceof NavigationEnd) {
+        this.activeLink = val.url.substring(1)
+        if(this.activeLink==='') {
+          this.activeLink = this.routerLink[0]
+        }
+      }
+
+  });
   }
   ngOnInit() {
-    this.route.queryParams.subscribe(params=>{
-      console.log("ROUTES NAME "+params['name'])
-    })
   }
+
 
 }

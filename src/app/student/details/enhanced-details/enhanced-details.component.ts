@@ -4,19 +4,20 @@ import { DetailsEditComponent } from './../../details-edit/details-edit.componen
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StudentService } from '../../services/student.service';
-import { Student } from '../../model/student-list';
+import {Student} from '../../model/student-list';
 import { MatDialog } from '@angular/material/dialog';
 import { auto } from '@popperjs/core';
 
 @Component({
   selector: 'app-enhanced-details',
   templateUrl: './enhanced-details.component.html',
-  styleUrls: ['./enhanced-details.component.css'],
+  styleUrls: ['./enhanced-details.component.css']
 })
 export class EnhancedDetailsComponent implements OnInit {
   selectedStudent!: Student;
   panelOpenState = false;
   isLoading = true;
+  selectedCourses:number[]=[]
 
   constructor(
     public dialog: MatDialog,
@@ -25,8 +26,9 @@ export class EnhancedDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let id = parseInt(this.activatedRoute.snapshot.params['id']);
-    this.showStudentDetails(id);
+    const selectedStudentRoot = this.activatedRoute.snapshot.data["selectedStudent"];
+      this.setStudentData(selectedStudentRoot.data.student as Student)
+
   }
 
   getPerformanceButtonText(): string {
@@ -39,10 +41,14 @@ export class EnhancedDetailsComponent implements OnInit {
 
   private showStudentDetails(id: number) {
     this.studentService.getSelectedStudent(id).subscribe((any) => {
-      var student = any.data.student as Student;
-      this.selectedStudent = student;
-      this.isLoading = false;
+      const student = any.data.student as Student;
+      this.setStudentData(student)
     });
+  }
+
+  private setStudentData(student:Student) {
+    this.selectedStudent = student;
+    this.isLoading = false;
   }
 
   updateDetailsClicked() {
@@ -84,7 +90,16 @@ export class EnhancedDetailsComponent implements OnInit {
       }
     });
 
+  }
 
+  pickedCourses(courses:number[]) {
+      this.selectedCourses = courses;
+  }
+
+  saveCourses() {
+    this.studentService.saveCourses(this.selectedCourses,this.selectedStudent.id).subscribe(()=>{
+      this.showStudentDetails(this.selectedStudent.id);
+    })
   }
 
 

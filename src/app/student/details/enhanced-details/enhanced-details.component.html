@@ -56,6 +56,23 @@
 
     </mat-expansion-panel>
 
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Courses Enrolled By {{selectedStudent.firstName}}
+        </mat-panel-title>
+        <mat-panel-description>
+          Contact information is available
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list role="list" *ngFor="let course of selectedStudent.courses">
+        <mat-list-item role="list-item">{{course.name}}</mat-list-item>
+      </mat-list>
+      <app-student-course-list (selectedCourses)="pickedCourses($event)"></app-student-course-list>
+
+      <button mat-button color="primary" class="save_course" (click)="saveCourses()">Save</button>
+    </mat-expansion-panel>
+
 
   </mat-accordion>
 

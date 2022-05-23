@@ -11,7 +11,6 @@ import { StudentRequest } from '../model/request';
 export class StudentService {
   studentList$ = new EventEmitter<Root>();
   studentCount$ = new EventEmitter<number>();
-  student$ = new EventEmitter<Student>();
   studentCount = 0;
   studentList!: Root;
 
@@ -24,6 +23,12 @@ export class StudentService {
       'http://localhost:3000/api/students',
       data
     );
+  }
+
+  getStudents():Observable<Root>{
+    return this.http
+      .get<Root>('http://localhost:3000/api/students')
+
   }
 
   updateStudentList() {
@@ -61,6 +66,21 @@ export class StudentService {
       requestData
     );
 
+  }
+
+  saveCourses(selectedCourses:number[],studentId:number):Observable<any> {
+    let requestBody = {
+      id: studentId,
+      courses: selectedCourses
+    }
+    return this.http.post<any>(
+      'http://localhost:3000/api/students/update',
+      requestBody
+    );
+
+  }
+  cacheStudents(studentRoot:Root) {
+    this.studentList = studentRoot
   }
 
 

@@ -2,3 +2,6 @@
   display: table-cell;
   width: 490px;
 }
+.save_course {
+  float: right;
+}

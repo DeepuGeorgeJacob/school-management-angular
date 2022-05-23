@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {StudentService} from "../services/student.service";
 import {StudentDetailsComponent} from "../student-details/student-details.component";
@@ -14,6 +14,9 @@ export class HomeComponent implements OnInit{
 
   title = 'school-management';
   studentCount = this.service.studentCount
+
+  @Output()
+  studentAdded$ = new EventEmitter<boolean>()
 
   constructor(public dialog: MatDialog, public service: StudentService) {
   }

@@ -1,3 +1,4 @@
+import { Course } from './course';
 export interface Root {
   data: Student[]
 }
@@ -7,7 +8,8 @@ export interface Student {
   firstName: string
   lastName: string
   studentDetails: StudentDetails
-  performance: Performance
+  performance: Performance,
+  courses:Course[]
 }
 
 export interface StudentDetails {

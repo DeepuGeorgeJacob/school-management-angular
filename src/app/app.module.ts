@@ -29,6 +29,9 @@ import { MatListModule } from "@angular/material/list";
 import { DetailsEditComponent } from './student/details-edit/details-edit.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { PerformanceEditComponent } from './student/performance-edit/performance-edit.component';
+import { CourseListComponent } from './course/course-list/course-list.component';
+import {MatSelectModule} from '@angular/material/select';
+import { StudentCourseListComponent } from './student/course/student-course-list/student-course-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import { PerformanceEditComponent } from './student/performance-edit/performance
     PageNotFoundComponent,
     EnhancedDetailsComponent,
     DetailsEditComponent,
-    PerformanceEditComponent
+    PerformanceEditComponent,
+    CourseListComponent,
+    StudentCourseListComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,9 @@ import { PerformanceEditComponent } from './student/performance-edit/performance
     MatBadgeModule,
     MatExpansionModule,
     MatListModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSelectModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
