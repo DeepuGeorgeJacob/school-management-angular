@@ -17,7 +17,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from '@angular/material/core';
-import { ReactiveFormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HomeComponent } from './student/home/home.component';
 import { MatTabsModule } from "@angular/material/tabs";
 import { PageNotFoundComponent } from './not-found/page-not-found/page-not-found.component';
@@ -32,6 +32,7 @@ import { PerformanceEditComponent } from './student/performance-edit/performance
 import { CourseListComponent } from './course/course-list/course-list.component';
 import {MatSelectModule} from '@angular/material/select';
 import { StudentCourseListComponent } from './student/course/student-course-list/student-course-list.component';
+import { TemplateFormComponent } from './debug/template/template-form/template-form.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { StudentCourseListComponent } from './student/course/student-course-list
     DetailsEditComponent,
     PerformanceEditComponent,
     CourseListComponent,
-    StudentCourseListComponent
+    StudentCourseListComponent,
+    TemplateFormComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +64,7 @@ import { StudentCourseListComponent } from './student/course/student-course-list
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    FormsModule,
     ReactiveFormsModule,
     MatTabsModule,
     MatCardModule,
@@ -70,7 +73,6 @@ import { StudentCourseListComponent } from './student/course/student-course-list
     MatListModule,
     MatProgressBarModule,
     MatSelectModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]

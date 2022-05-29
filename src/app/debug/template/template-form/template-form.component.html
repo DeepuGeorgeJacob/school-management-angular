@@ -1,0 +1,58 @@
+<!--
+<form (ngSubmit)="onSubmit(myForm)" #myForm="ngForm">
+-->
+<div class="container">
+  <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <div class="user-data" ngModelGroup="userData" #userData="ngModelGroup">
+      <div class="form-group">
+        <label>Enter user name</label>
+        <br/>
+        <input
+          value=""
+          name="userName"
+          type="text"
+          class="ng-form"
+          ngModel
+          required
+          #userName="ngModel"
+        />
+        <br/>
+        <label class="message danger" *ngIf="userName.invalid && userName.touched">Invalid user name</label>
+      </div>
+      <button (click)="getSuggestedUserName()" type="button"> Suggest User name</button>
+
+      <div class="form-group">
+        <label>Enter email name</label>
+        <br/>
+        <input
+          value=""
+          name="email"
+          type="email"
+          class="ng-form"
+          ngModel
+          required
+          email
+          #email="ngModel"
+        />
+        <br/>
+        <label class="message danger" *ngIf="!email.valid && email.touched">Invalid Email address</label>
+      </div>
+      <label class="message danger" *ngIf="userData.invalid && userData.touched">Invalid User data</label>
+    </div>
+
+    <div class="form-group">
+      <label>Secret Question</label>
+      <br/>
+      <select name="finderSources" id="source" [ngModel]="defaultQuestion">
+        <option value="pet">Enter your per name</option>
+        <option value="car">Enter you Car name</option>
+      </select>
+      <br />
+      <textarea
+        cols="3" name="questionAnswer" [(ngModel)]="answer" style="width: 100%"></textarea>
+    </div>
+    <div>Answer is {{answer}}</div>
+
+    <button type="submit" [disabled]="!myForm.valid">Submit</button>
+  </form>
+</div>

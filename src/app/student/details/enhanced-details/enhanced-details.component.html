@@ -68,7 +68,7 @@
       <mat-list role="list" *ngFor="let course of selectedStudent.courses">
         <mat-list-item role="list-item">{{course.name}}</mat-list-item>
       </mat-list>
-      <app-student-course-list (selectedCourses)="pickedCourses($event)"></app-student-course-list>
+      <app-student-course-list (selectedCourses)="pickedCourses($event)" [enrolledCourses]="selectedStudent.courses"></app-student-course-list>
 
       <button mat-button color="primary" class="save_course" (click)="saveCourses()">Save</button>
     </mat-expansion-panel>
