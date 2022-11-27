@@ -1,4 +1,4 @@
-import { StudentDetailsRequest } from './../model/request';
+import { StudentDetailsRequest } from '../model/request';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -20,20 +20,20 @@ export class StudentService {
 
   postStudentData(data: StudentRequest): Observable<any> {
     return this.http.post<StudentRequest>(
-      'http://localhost:3000/api/students',
+      'http://localhost:9090/student-service/api/students',
       data
     );
   }
 
   getStudents():Observable<Root>{
     return this.http
-      .get<Root>('http://localhost:3000/api/students')
+      .get<Root>('http://localhost:9090/student-service/api/students')
 
   }
 
   updateStudentList() {
     this.http
-      .get<Root>('http://localhost:3000/api/students')
+      .get<Root>('http://localhost:9090/student-service/api/students')
       .subscribe((root) => {
         this.studentList = root;
         this.studentCount = root.data.length;
@@ -43,14 +43,14 @@ export class StudentService {
   }
 
   getSelectedStudent(id: number): Observable<any> {
-    return this.http.get<any>('http://localhost:3000/api/students/' + id);
+    return this.http.get<any>('http://localhost:9090/student-service/api/students/' + id);
   }
 
   updateStudentDetails(
     studentDetailsRequest: StudentDetailsRequest
   ): Observable<any> {
     return this.http.put<any>(
-      'http://localhost:3000/api/student/details',
+      'http://localhost:9090/student-service/api/student/details',
       studentDetailsRequest
     );
   }
@@ -62,7 +62,7 @@ export class StudentService {
     lastPerformance:number
   }) {
     return this.http.post<any>(
-      'http://localhost:3000/api/students/performance',
+      'http://localhost:9090/student-service/api/students/performance',
       requestData
     );
 
@@ -74,7 +74,7 @@ export class StudentService {
       courses: selectedCourses
     }
     return this.http.post<any>(
-      'http://localhost:3000/api/students/update',
+      'http://localhost:9090/student-service/api/students/update',
       requestBody
     );
 

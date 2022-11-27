@@ -11,13 +11,13 @@ export class CourseService {
 
   saveCourse(courseName:string):Observable<any> {
     return this.http
-      .post<any>('http://localhost:3000/api/course',courseName)
+      .post<any>('http://localhost:9090/student-service/api/course',courseName)
 
   }
 
   fetchCourse():Observable<any> {
     return this.http
-    .get<any>('http://localhost:3000/api/course')
+    .get<any>('http://localhost:9090/student-service/api/course')
   }
 
 
